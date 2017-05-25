@@ -28,8 +28,8 @@ public class playGame extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        stringArray.add("3 x 5 + 7 / 3");
-        stringArray.add("5 x 10 / 20 x 2");
+        stringArray.add("3 x 5 + 9 / 3");
+        stringArray.add("");
         stringArray.add("3 + 2");
         stringArray.add("6 + 2");
         stringArray.add("");
@@ -38,6 +38,18 @@ public class playGame extends AppCompatActivity {
         stringArray.add("5 x 10 / 20 x 2");
         stringArray.add("5 x 10 / 20 x 2");
         stringArray.add("5 x 10 / 20 x 2");
+
+        arrayLeft.add("15");
+        arrayLeft.add("12");
+        arrayLeft.add("3");
+        arrayLeft.add("6");
+        arrayLeft.add("5");
+        arrayLeft.add("2");
+        arrayLeft.add("20");
+        arrayLeft.add("11");
+        arrayLeft.add("18");
+        arrayLeft.add("22");
+
 
         TextView question = (TextView) findViewById(R.id.question);
 
