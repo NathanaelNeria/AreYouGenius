@@ -15,6 +15,8 @@ import java.util.Random;
 
 public class playGame extends AppCompatActivity {
     TextView question;
+    TextView wrong;
+    TextView right;
     ArrayList<String> stringArray = new ArrayList<>();
     ArrayList<String> arrayLeft = new ArrayList<>();
     ArrayList<String> arrayRight = new ArrayList<>();
@@ -27,38 +29,94 @@ public class playGame extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Random random = new Random();
 
-        stringArray.add("3 x 5 + 9 / 3");
-        stringArray.add("");
-        stringArray.add("3 + 2");
-        stringArray.add("6 + 2");
-        stringArray.add("");
-        stringArray.add("5 x 10 / 20 x 2");
-        stringArray.add("5 x 10 / 20 x 2");
-        stringArray.add("5 x 10 / 20 x 2");
-        stringArray.add("5 x 10 / 20 x 2");
-        stringArray.add("5 x 10 / 20 x 2");
+        int a = random.nextInt(19)+1;
+        int b = random.nextInt(19)+1;
+        int c = random.nextInt(19)+1;
+        int d = random.nextInt(20);
 
-        arrayLeft.add("15");
-        arrayLeft.add("12");
-        arrayLeft.add("3");
-        arrayLeft.add("6");
-        arrayLeft.add("5");
-        arrayLeft.add("2");
-        arrayLeft.add("20");
-        arrayLeft.add("11");
-        arrayLeft.add("18");
-        arrayLeft.add("22");
+        int w = a + b * c - d;
 
+        int r = a + b * c;
+
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+        stringArray.add(a+" + "+b+" x "+c);
+
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+        arrayLeft.add(String.valueOf(w));
+
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
+        arrayRight.add(String.valueOf(r));
 
         TextView question = (TextView) findViewById(R.id.question);
+        TextView wrong = (TextView) findViewById(R.id.wrong);
+        TextView right = (TextView) findViewById(R.id.right);
 
-        question.setText(stringArray.get(0));
+        //question.setText(stringArray.get(0));
+        //wrong.setText(arrayLeft.get(0));
+        //right.setText(arrayRight.get(0));
 
-        /*        Resources res = getResources();
-        question = res.getStringArray(ArrayList<stringArray>);
+        question.setText(stringArray.get(1));
+        wrong.setText(arrayLeft.get(1));
+        right.setText(arrayRight.get(1));
 
-        question.setText();*/
+        question.setText(stringArray.get(2));
+        wrong.setText(arrayLeft.get(2));
+        right.setText(arrayRight.get(2));
+
+        question.setText(stringArray.get(3));
+        wrong.setText(arrayLeft.get(3));
+        right.setText(arrayRight.get(3));
+
+        question.setText(stringArray.get(4));
+        wrong.setText(arrayLeft.get(4));
+        right.setText(arrayRight.get(4));
+
+        question.setText(stringArray.get(5));
+        wrong.setText(arrayLeft.get(5));
+        right.setText(arrayRight.get(5));
+
+        question.setText(stringArray.get(6));
+        wrong.setText(arrayLeft.get(6));
+        right.setText(arrayRight.get(6));
+
+        question.setText(stringArray.get(7));
+        wrong.setText(arrayLeft.get(7));
+        right.setText(arrayRight.get(7));
+
+        question.setText(stringArray.get(8));
+        wrong.setText(arrayLeft.get(8));
+        right.setText(arrayRight.get(8));
+
+        question.setText(stringArray.get(9));
+        wrong.setText(arrayLeft.get(9));
+        right.setText(arrayRight.get(9));
+
     }
 
 
