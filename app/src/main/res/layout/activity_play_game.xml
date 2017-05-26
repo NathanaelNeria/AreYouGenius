@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/poke"
     android:orientation="vertical"
     tools:context="com.example.nathanaelneria.areyougenius.playGame">
 
+
+
     <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="asd"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="30dp"
-        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginTop="100dp"
         android:layout_gravity="center"
-        android:id="@+id/question"/>
+        android:onClick="handler"/>
 
-    <TextView
+    <Button
+        android:id="@+id/b"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/wrong"
-        android:layout_marginLeft="10dp"
-        android:text="asdad"
-        android:textSize="30dp"
-        android:gravity="center_vertical"
-        android:layout_gravity="center_vertical"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="asdasd"
+        android:onClick="handler"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="asdasd"
+        android:id="@+id/c"
+        android:layout_gravity="center"
+        android:onClick="handler"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="asdasd"
+        android:id="@+id/d"
+        android:layout_gravity="center"
+        android:onClick="handler"/>
 
-    <LinearLayout>
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:id="@+id/right"
-            android:text="asd"
-            android:textSize="30dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"/>
-
-    </LinearLayout>
-
-</>
+</LinearLayout>

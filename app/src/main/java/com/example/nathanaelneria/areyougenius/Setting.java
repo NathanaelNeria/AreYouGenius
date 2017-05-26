@@ -30,15 +30,15 @@ public class Setting extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String statusSwitchFormula;
+                String statusSwitchSound;
                 if (statusSwitch.isChecked()) {
-                    statusSwitchFormula = statusSwitch.getTextOn().toString();
+                    statusSwitchSound = statusSwitch.getTextOn().toString();
                     SoundOnOff = 1;
                     preferences.edit().putInt("soundonoff", SoundOnOff).apply();
                 } else {
                     SoundOnOff = 0;
                     preferences.edit().putInt("soundonoff", SoundOnOff).apply();
-                    statusSwitchFormula = statusSwitch.getTextOff().toString();
+                    statusSwitchSound = statusSwitch.getTextOff().toString();
                 }
                 finish();
 
