@@ -2,6 +2,7 @@ package com.example.nathanaelneria.areyougenius;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class playGame extends Activity {
     private int qr;
     private int score;
 
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class playGame extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_play_game);
+
+        preferences = getSharedPreferences("score",MODE_PRIVATE);
 
         score = 0;
     }
@@ -152,8 +157,10 @@ public class playGame extends Activity {
         if(questNo<10) {
             nextQuestion();
         } else{
+            preferences.edit()
+                    .putInt("scores", score)
+                    .apply();
             Intent intent = new Intent(this,gameOver.class);
-            intent.putExtra("score",score);
             startActivity(intent);
             finish();
         }
