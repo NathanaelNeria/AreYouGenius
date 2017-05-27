@@ -27,20 +27,23 @@
             android:layout_gravity="center"
             android:layout_marginTop="70dp"
             android:text="Play"
-            android:onClick="play"
+            android:onClick="onClick"
+            android:id="@+id/game"
             />
         <Button
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:text="High Score"
-            android:id="@+id/score"/>
+            android:id="@+id/score"
+            android:onClick="onClick"/>
         <Button
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:text="Quit"
-            android:id="@+id/quit"/>
+            android:id="@+id/quit"
+            android:onClick="onClick"/>
 
     </LinearLayout>
 

@@ -12,11 +12,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Shake mShakeDetector;
+    Button game;
+    Button score;
+    Button quit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private void handleShakeEvent(int count) {
     }
 
-    public void play(View view){
-        Intent intent = new Intent(this,playGame.class);
-        startActivity(intent);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -93,5 +92,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mSensorManager.registerListener(mShakeDetector, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+    }
+
+    public void onClick(View view){
+        game = (Button) findViewById(R.id.game);
+        quit = (Button) findViewById(R.id.quit);
+        score = (Button) findViewById(R.id.score);
+
+        if (view == game){
+            Intent intent = new Intent(this,playGame.class);
+            startActivity(intent);
+        }
+        else if (view == quit){
+            finish();
+        }
+        else if(view == score){
+            Intent intent = new Intent(this,highScore.class);
+            startActivity(intent);
+        }
+
     }
 }

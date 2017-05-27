@@ -35,6 +35,8 @@ public class playGame extends Activity {
 
     private int qr;
     private int score;
+    Database db;
+
 
     private SharedPreferences preferences;
 
@@ -42,6 +44,8 @@ public class playGame extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        db = new Database(this);
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_play_game);
@@ -54,6 +58,7 @@ public class playGame extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+
 
         /*arrayLeft.add(String.valueOf(w));
         arrayLeft.add(String.valueOf(w));
@@ -154,18 +159,22 @@ public class playGame extends Activity {
         if(qr == answer){
             score++;
         }
-        if(questNo<10) {
+        if(questNo<30) {
             nextQuestion();
-        } else{
-            preferences.edit()
-                    .putInt("scores", score)
-                    .apply();
-            Intent intent = new Intent(this,gameOver.class);
-            startActivity(intent);
-            finish();
+        }
+        else{
+            Result();
         }
     }
 
+    public void Result(){
+        db.addScore(score);
+        db.close();
+        Intent intent = new Intent(this,gameOver.class);
+        startActivity(intent);
+        finish();
+
+    }
 
 
 
