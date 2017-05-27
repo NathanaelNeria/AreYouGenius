@@ -40,7 +40,7 @@ public class highScore extends AppCompatActivity {
                 enumerator++;
             }
         }
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this, R.layout.,numArray);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,numArray);
         ListView listview = (ListView) findViewById(R.id.listView);
         listview.setAdapter(myAdapter);
         listview.setDivider(null);
