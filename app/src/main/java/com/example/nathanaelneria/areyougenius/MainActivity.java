@@ -7,7 +7,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mShakeDetector.setOnShakeListener(new Shake.OnShakeListener() {
 
             @Override
-            public void onShake(int count) {
+            public void onShake(int count) { //change background on shake
                 Random random = new Random();
                 int randbg = random.nextInt(bgpic.length);
                 LinearLayout layout = (LinearLayout) findViewById(R.id.display);
@@ -129,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart() { //play music if the setting is on
         super.onStart();
         soundOnOff = preferences.getInt("Sound",0);
         if(soundOnOff == 1){

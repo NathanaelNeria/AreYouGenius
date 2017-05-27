@@ -5,12 +5,10 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
 public class Setting extends AppCompatActivity {
-    private Button confirmButton;
     private Switch statusSwitch;
     private SharedPreferences preferences;
     int SoundOnOff;
@@ -37,6 +35,7 @@ public class Setting extends AppCompatActivity {
     }
 
     public void playSound(View view){
+        //used for play music setting
         if (statusSwitch.isChecked()) {
             SoundOnOff = 1;
             preferences.edit().putInt("Sound", SoundOnOff).apply();

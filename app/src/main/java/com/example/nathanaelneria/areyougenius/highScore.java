@@ -2,8 +2,6 @@ package com.example.nathanaelneria.areyougenius;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,7 +12,6 @@ import java.util.Locale;
 public class highScore extends AppCompatActivity {
     ArrayList<String> numArray;
     ArrayList<Integer> scoreArray;
-    ListView listView;
     Database db;
 
     @Override
@@ -28,6 +25,7 @@ public class highScore extends AppCompatActivity {
 
         Collections.sort(scoreArray, Collections.<Integer>reverseOrder());
 
+        //used for limiting the max number of list view shown to 10
         int enumerator = 1;
         if(scoreArray.size()<10) {
             for (int points : scoreArray) {

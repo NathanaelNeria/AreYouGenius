@@ -17,14 +17,14 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:text=""
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/a"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:layout_marginTop="100dp"
         android:layout_gravity="center"
         android:onClick="handler"/>
@@ -34,7 +34,7 @@
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:text=""
         android:onClick="handler"/>
     <Button
@@ -44,14 +44,14 @@
         android:text=""
         android:id="@+id/c"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:onClick="handler"/>
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:gravity="center"
         android:text=""
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:id="@+id/d"
         android:layout_gravity="center"
         android:onClick="handler"/>

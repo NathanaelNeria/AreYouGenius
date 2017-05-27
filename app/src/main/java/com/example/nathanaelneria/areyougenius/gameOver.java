@@ -1,28 +1,19 @@
 package com.example.nathanaelneria.areyougenius;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
 public class gameOver extends AppCompatActivity {
-    private TextView scoreText;
-    private Database db;
-    private int Currscore;
     private int finalScore;
     Button Share;
     Button Menu;
@@ -33,6 +24,12 @@ public class gameOver extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+        int Currscore;
+        Database db;
+        TextView scoreText;
+
+        //store score to the data base and set text to score TextView
         scoreText = (TextView) findViewById(R.id.score);
         db = new Database(this);
         Currscore = db.getScoreCount();

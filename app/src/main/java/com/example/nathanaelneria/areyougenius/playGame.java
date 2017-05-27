@@ -3,35 +3,20 @@ package com.example.nathanaelneria.areyougenius;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class playGame extends Activity {
-    private TextView question;
-    private Button Ba;
-    private Button Bb;
-    private Button Bc;
-    private Button Bd;
     private int questNo = 0;
     Random random = new Random();
-    private int a;
-    private int b;
-    private int c;
-    private int d;
+    Button ButtonB;
 
     private int qr;
     private int score;
@@ -58,57 +43,21 @@ public class playGame extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-
-        /*arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-        arrayLeft.add(String.valueOf(w));
-
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-        arrayRight.add(String.valueOf(r));
-
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-        arrayBottom.add(String.valueOf(ww));
-
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));
-        arrayTop.add(String.valueOf(rr));*/
+        
         nextQuestion();
-
-
     }
 
     public void nextQuestion() {
+        //code for random question making and random answer text position
+        TextView question;
+        Button ButtonA;
+        Button ButtonC;
+        Button ButtonD;
+        int a;
+        int b;
+        int c;
+        int d;
+
         ArrayList<Integer>randomPutter = new ArrayList<>();
         ArrayList<Integer>randomizedAnswer = new ArrayList<>();
         a = random.nextInt(19) + 1;
@@ -118,10 +67,10 @@ public class playGame extends Activity {
         qr = a+b*c;
 
         question = (TextView) findViewById(R.id.question);
-        Ba = (Button) findViewById(R.id.a);
-        Bb = (Button) findViewById(R.id.b);
-        Bc = (Button) findViewById(R.id.c);
-        Bd = (Button) findViewById(R.id.d);
+        ButtonA = (Button) findViewById(R.id.a);
+        ButtonB = (Button) findViewById(R.id.b);
+        ButtonC = (Button) findViewById(R.id.c);
+        ButtonD = (Button) findViewById(R.id.d);
 
         question.setText(String.format(Locale.getDefault(),"%1$2d + %2$2d * %3$2d",a,b,c));
         int w = a + b * c - d;
@@ -140,26 +89,26 @@ public class playGame extends Activity {
             randomPutter.remove(randomCounter);
         }
 
-        Ba.setText(Integer.toString(randomizedAnswer.get(0)));
-        Bb.setText(Integer.toString(randomizedAnswer.get(1)));
-        Bc.setText(Integer.toString(randomizedAnswer.get(2)));
-        Bd.setText(Integer.toString(randomizedAnswer.get(3)));
+        ButtonA.setText(Integer.toString(randomizedAnswer.get(0)));
+        ButtonB.setText(Integer.toString(randomizedAnswer.get(1)));
+        ButtonC.setText(Integer.toString(randomizedAnswer.get(2)));
+        ButtonD.setText(Integer.toString(randomizedAnswer.get(3)));
         questNo++;
 
     }
 
     public void handler(View view){
-        Bb = (Button) findViewById(R.id.b);
+        ButtonB = (Button) findViewById(R.id.b);
 
-        String ans = Bb.getText().toString();
+        String ans = ButtonB.getText().toString();
 
         int answer = Integer.parseInt(ans);
 
 
-        if(qr == answer){
+        if(qr == answer){ //increment if the answer is correct
             score++;
         }
-        if(questNo<30) {
+        if(questNo<30) { //set question to 30
             nextQuestion();
         }
         else{
@@ -167,7 +116,7 @@ public class playGame extends Activity {
         }
     }
 
-    public void Result(){
+    public void Result(){ //for adding score to database and move to gameOver activity
         db.addScore(score);
         db.close();
         Intent intent = new Intent(this,gameOver.class);
