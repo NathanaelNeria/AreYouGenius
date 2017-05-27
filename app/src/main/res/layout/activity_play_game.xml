@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/poke"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context="com.example.nathanaelneria.areyougenius.playGame">
 
@@ -13,41 +13,45 @@
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:text="asd"
+        android:text=""
         android:textSize="30dp" />
 
     <Button
         android:id="@+id/a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:gravity="center"
+        android:textSize="20dp"
         android:layout_marginTop="100dp"
         android:layout_gravity="center"
         android:onClick="handler"/>
 
     <Button
         android:id="@+id/b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="asdasd"
+        android:textSize="20dp"
+        android:text=""
         android:onClick="handler"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="asdasd"
+        android:text=""
         android:id="@+id/c"
         android:layout_gravity="center"
+        android:textSize="20dp"
         android:onClick="handler"/>
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="asdasd"
+        android:text=""
+        android:textSize="20dp"
         android:id="@+id/d"
         android:layout_gravity="center"
         android:onClick="handler"/>
