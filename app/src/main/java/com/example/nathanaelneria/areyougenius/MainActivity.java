@@ -7,12 +7,17 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        final int [] bgpic = {R.drawable.background, R.drawable.adv, R.drawable.poke};
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -36,27 +42,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onShake(int count) {
-				/*
-				 * The following method, "handleShakeEvent(count):" is a stub //
-				 * method you would use to setup whatever you want done once the
-				 * device has been shook.
-				 */
-                handleShakeEvent(count);
+                Random random = new Random();
+                int randbg = random.nextInt(bgpic.length);
+                LinearLayout layout = (LinearLayout) findViewById(R.id.display);
+                if(layout.getBackground() == ContextCompat.getDrawable(MainActivity.this, bgpic[randbg])) {
+                    layout.setBackgroundResource(bgpic[(randbg+1)%bgpic.length]);
+                } else {
+                    layout.setBackgroundResource(bgpic[randbg]);
+                }
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
-    private void handleShakeEvent(int count) {
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

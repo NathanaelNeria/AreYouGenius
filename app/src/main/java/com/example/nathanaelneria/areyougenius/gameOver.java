@@ -57,6 +57,7 @@ public class gameOver extends AppCompatActivity {
         else if(view == Menu){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
+            finish();
         }
         else if(view == quit){
             finishAffinity();
@@ -79,7 +80,7 @@ public class gameOver extends AppCompatActivity {
         this.startActivity(intent);
 
         Intent tweetIntent = new Intent(Intent.ACTION_SEND);
-        tweetIntent.putExtra(Intent.EXTRA_TEXT, "This is a Test.");
+        tweetIntent.putExtra(Intent.EXTRA_TEXT, "I got a score of "+finalScore+" in Are You Genius?");
         tweetIntent.setType("text/plain");
 
         PackageManager packManager = getPackageManager();
