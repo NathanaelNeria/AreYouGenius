@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/adv"
     tools:context="com.example.nathanaelneria.areyougenius.Setting"
     android:orientation="horizontal">
 
@@ -24,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:onClick="playSound"
             android:text="Confirm"/>
 
         <Switch

@@ -1,5 +1,6 @@
 package com.example.nathanaelneria.areyougenius;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,30 +21,12 @@ public class Setting extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
 
-        preferences = getSharedPreferences("value", MODE_PRIVATE);
+        preferences = getSharedPreferences("Sound", MODE_PRIVATE);
 
-        confirmButton = (Button) findViewById(R.id.confirmButton);
         statusSwitch = (Switch) findViewById(R.id.statusSwitch);
 
         statusSwitch.setChecked(preferences.getBoolean("your_key", false));
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String statusSwitchSound;
-                if (statusSwitch.isChecked()) {
-                    statusSwitchSound = statusSwitch.getTextOn().toString();
-                    SoundOnOff = 1;
-                    preferences.edit().putInt("soundonoff", SoundOnOff).apply();
-                } else {
-                    SoundOnOff = 0;
-                    preferences.edit().putInt("soundonoff", SoundOnOff).apply();
-                    statusSwitchSound = statusSwitch.getTextOff().toString();
-                }
-                finish();
-
-            }
-        });
 
         statusSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -51,5 +34,20 @@ public class Setting extends AppCompatActivity {
                 preferences.edit().putBoolean("your_key", isChecked).apply();
             }
         });
+    }
+
+    public void playSound(View view){
+        if (statusSwitch.isChecked()) {
+            SoundOnOff = 1;
+            preferences.edit().putInt("Sound", SoundOnOff).apply();
+        } else {
+            SoundOnOff = 0;
+            preferences.edit().putInt("Sound", SoundOnOff).apply();
+        }
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
+
     }
 }

@@ -2,10 +2,11 @@ package com.example.nathanaelneria.areyougenius;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,9 +24,12 @@ public class MainActivity extends AppCompatActivity {
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private Shake mShakeDetector;
+    private int soundOnOff;
     Button game;
     Button score;
     Button quit;
+    SharedPreferences preferences;
+    MediaPlayer music;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        preferences = getSharedPreferences("Sound", MODE_PRIVATE);
+
+        music = MediaPlayer.create(getApplicationContext(), R.raw.backgroundsong);
+        music.setLooping(true);
+
+        soundOnOff = preferences.getInt("Sound",0);
+
+        if(soundOnOff == 1){
+            music.start();
+        }
+
         final int [] bgpic = {R.drawable.background, R.drawable.adv, R.drawable.poke};
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = mSensorManager
@@ -74,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent intent = new Intent(this,Setting.class);
             startActivity(intent);
+            finish();
             return true;
         }
 
@@ -83,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        music.stop();
         mSensorManager.unregisterListener(mShakeDetector);
     }
 
@@ -109,5 +126,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        soundOnOff = preferences.getInt("Sound",0);
+        if(soundOnOff == 1){
+            music.start();
+        }
     }
 }
