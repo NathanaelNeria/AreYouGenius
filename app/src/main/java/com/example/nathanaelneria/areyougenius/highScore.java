@@ -7,8 +7,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Locale;
+
 public class highScore extends AppCompatActivity {
-    ArrayAdapter<Java> myStringArray;
+    ArrayList<String> numArray;
+    ArrayList<Integer> scoreArray;
     ListView listView;
     Database db;
 
@@ -16,25 +21,29 @@ public class highScore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
-    }
+        db = new Database(this);
+        numArray = new ArrayList<>();
+        scoreArray = new ArrayList<>();
+        scoreArray = db.getAllScores();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        myStringArray = new ArrayAdapter<Java>(this, android.R.layout.simple_list_item_1);
+        Collections.sort(scoreArray, Collections.<Integer>reverseOrder());
 
-
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(myStringArray);
-
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("Index: " + position);
-                System.out.println("Name: " + myStringArray.getItem(position));
+        int enumerator = 1;
+        if(scoreArray.size()<10) {
+            for (int points : scoreArray) {
+                numArray.add(String.format(Locale.getDefault(), "%1$2s.  %2$3s ", Integer.toString(enumerator), Integer.toString(points)));
+                enumerator++;
+            }
+        } else {
+            for(int x = 0 ; x<10 ; x++){
+                numArray.add(String.format(Locale.getDefault(), "%1$2s.  %2$3s ", Integer.toString(enumerator), Integer.toString(scoreArray.get(x))));
+                enumerator++;
+            }
         }
-});
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<>(this, R.layout.,numArray);
+        ListView listview = (ListView) findViewById(R.id.listView);
+        listview.setAdapter(myAdapter);
+        listview.setDivider(null);
     }
+
 }

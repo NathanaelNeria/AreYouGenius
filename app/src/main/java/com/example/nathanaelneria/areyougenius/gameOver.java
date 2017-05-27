@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class gameOver extends AppCompatActivity {
@@ -11,6 +13,10 @@ public class gameOver extends AppCompatActivity {
     private Database db;
     private int Currscore;
     private int finalScore;
+    Button Share;
+    Button Menu;
+    Button quit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +31,11 @@ public class gameOver extends AppCompatActivity {
             current.moveToFirst();
             finalScore = current.getInt(current.getColumnIndex("score"));
         }
-        
+        scoreText.setText(Integer.toString(finalScore));
+        db.close();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void onClick(View view){
+
     }
 }
