@@ -52,6 +52,7 @@ public class gameOver extends AppCompatActivity {
         quit = (Button) findViewById(R.id.quit);
 
         if(view == Share){
+            shareTwitter();
         }
         else if(view == Menu){
             Intent intent = new Intent(this,MainActivity.class);
@@ -65,31 +66,40 @@ public class gameOver extends AppCompatActivity {
     public void shareTwitter(){
         //Method to share on twitter
 
+        Intent intent = null;
+        try {
+            // get the Twitter app if possible
+            this.getPackageManager().getPackageInfo("com.twitter.android", 0);
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?user_id=USERID"));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        } catch (Exception e) {
+            // no Twitter app, revert to browser
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/USERID_OR_PROFILENAME"));
+        }
+        this.startActivity(intent);
 
-        Intent tweet = new Intent(Intent.ACTION_SEND);
-        tweet.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        tweet.setDataAndType(uri, this.getContentResolver().getType(uri));
-        String twitterPost = ("I just got a score of "+finalScore+" in What's the number. Download at https://play.google.com/store/apps/details?id=com.myfirstgame.rico.gameedu");
-        tweet.putExtra(Intent.EXTRA_TEXT,twitterPost);
-        tweet.putExtra(Intent.EXTRA_STREAM,uri);
-        tweet.setType("image/*");
+        Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+        tweetIntent.putExtra(Intent.EXTRA_TEXT, "This is a Test.");
+        tweetIntent.setType("text/plain");
 
-        PackageManager packageManager = getPackageManager();
-        List<ResolveInfo> resolveInfoList = packageManager.queryIntentActivities(tweet,PackageManager.MATCH_DEFAULT_ONLY);
+        PackageManager packManager = getPackageManager();
+        List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_DEFAULT_ONLY);
 
         boolean resolved = false;
-        for (ResolveInfo resolveInfo : resolveInfoList){
-            if(resolveInfo.activityInfo.packageName.contains("twitter")){
-                tweet.setClassName(resolveInfo.activityInfo.packageName, resolveInfo.activityInfo.name);
-                resolved= true;
+        for(ResolveInfo resolveInfo: resolvedInfoList){
+            if(resolveInfo.activityInfo.packageName.startsWith("com.twitter.android")){
+                tweetIntent.setClassName(
+                        resolveInfo.activityInfo.packageName,
+                        resolveInfo.activityInfo.name );
+                resolved = true;
                 break;
             }
         }
         if(resolved){
-            startActivity(tweet);
-        } else{
-            Toast.makeText(this,"There is no twitter in this phone",Toast.LENGTH_SHORT).show();
+            startActivity(tweetIntent);
+        }else{
+            Toast.makeText(this, "Twitter app isn't found", Toast.LENGTH_LONG).show();
         }
-    }
 
+}
 }
